@@ -1,0 +1,17 @@
+[package]
+name = "rl_localtime"
+version = "0.1.0"
+authors = ["Martin Habovstiak <martin.habovstiak@gmail.com>"]
+edition = "2018"
+description = "Rust-locked localtime - a sound localtime implementation"
+repository = "https://github.com/Kixunil/rl_localtime"
+readme = "README.md"
+keywords = ["localtime", "soundness", "safety"]
+categories = ["api-bindings", "date-and-time", "os::unix-apis"]
+license = "MITNFA"
+
+[dependencies]
+libc = "0.2.117"
+
+[build-dependencies]
+cc = "1.0.72"
