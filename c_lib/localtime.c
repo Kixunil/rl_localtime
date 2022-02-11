@@ -2153,7 +2153,7 @@ mktime_tzname(struct state *sp, struct tm *tmp, bool setname)
 #if NETBSD_INSPIRED
 
 time_t
-mktime_z(struct state *sp, struct tm *tmp)
+rl_mktime_z(struct state *sp, struct tm *tmp)
 {
   return mktime_tzname(sp, tmp, false);
 }
@@ -2161,7 +2161,7 @@ mktime_z(struct state *sp, struct tm *tmp)
 #endif
 
 time_t
-mktime(struct tm *tmp)
+rl_mktime(struct tm *tmp)
 {
 #if defined(__BIONIC__)
   int saved_errno = errno;
@@ -2192,12 +2192,12 @@ timelocal(struct tm *tmp)
 }
 
 time_t
-timegm(struct tm *tmp)
+rl_timegm(struct tm *tmp)
 {
   return timeoff(tmp, 0);
 }
 
-time_t
+static time_t
 timeoff(struct tm *tmp, long offset)
 {
   if (tmp)

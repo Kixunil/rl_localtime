@@ -24,6 +24,8 @@ use libc::c_char;
 
 extern "C" {
     fn rl_localtime_r(sec: *const time_t, out: *mut libc::tm) -> *mut libc::tm;
+    fn rl_timegm(tm: *mut libc::tm) -> time_t;
+    fn rl_mktime(tm: *mut libc::tm) -> time_t;
 }
 
 /// Converts Unix time to calendar time based on current locale.
@@ -38,6 +40,26 @@ pub fn localtime(sec: time_t) -> io::Result<libc::tm> {
             return Err(io::Error::last_os_error());
         }
         Ok(out)
+    }
+}
+
+/// Converts calendar time to Unix time using UTC timezone.
+///
+/// Note that this method is soundly available even on platforms that normally don't have it.
+pub fn timegm(mut tm: libc::tm) -> time_t {
+    // C functions happily modify the inputs... Garbage everywhere...
+    unsafe {
+        rl_timegm(&mut tm)
+    }
+}
+
+/// Converts calendar time to Unix time using local timezone.
+///
+/// Note that this method is soundly available even on platforms that normally don't have it.
+pub fn mktime(mut tm: libc::tm) -> time_t {
+    // C functions happily modify the inputs... Garbage everywhere...
+    unsafe {
+        rl_mktime(&mut tm)
     }
 }
 
@@ -173,5 +195,7 @@ mod tests {
             super::localtime(0).unwrap();
         }
         setter_thread.join().unwrap();
+
+        assert_eq!(super::timegm(time), 0);
     }
 }

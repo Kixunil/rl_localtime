@@ -432,7 +432,7 @@ time_t timegm(struct tm *);
 time_t timelocal(struct tm *);
 # endif
 # if !defined timeoff || defined time_tz
-time_t timeoff(struct tm *, long);
+static time_t timeoff(struct tm *, long);
 # endif
 # if !defined time2posix || defined time_tz
 time_t time2posix(time_t);
