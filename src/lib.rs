@@ -161,6 +161,7 @@ mod tests {
         assert_eq!(time.tm_year, 70);
         assert_eq!(time.tm_yday, 0);
         assert_eq!(time.tm_wday, 4);
+        assert_eq!(time.tm_gmtoff, 0);
         assert!(time.tm_isdst < 1);
 
         let setter_thread = std::thread::spawn(|| {
