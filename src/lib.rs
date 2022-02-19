@@ -1,5 +1,12 @@
 //! # Rust-locked localtime implementation
 //!
+//! ## Crate abandoned
+//!
+//! **This crate is abandoned** because there's a pure Rust implemenation - [`tz-rs`](https://docs.rs/tz-rs/).
+//! The code is up for archival purposes only.
+//!
+//! ## About
+//!
 //! **Warning:** this crate is currently proof-of-concept and it wasn't deeply audited!
 //! While I believe this fixes the unsoundness I may have introduced other bug(s).
 //! Use at your own risk or, better, help improve it!
